@@ -172,3 +172,53 @@ Experience: ${work1.experience}\n\n\n`)
 console.log(`                          Family Details \n
 Relation: ${fam1.relation}\n
 Name: ${fam1.Name}\n\n`)
+
+//Inheritence
+//Friends Class
+class friend {
+    public ffname:string;
+    public flname:string;
+    public ffdlist:string[];
+    femail:string;
+  
+    constructor(ffn:string,fln:string,flist:string[],feml:string) {
+        this.ffname = ffn;
+        this.flname = fln;
+        this.ffdlist = flist;
+        this.femail= feml;
+       
+    }
+
+}
+//Mutual Friend Class
+class mutualfriends extends friend {
+    super(sffn:string,sfln:string,sflist:string[],sfeml:string) {
+        this.ffdlist = sflist;
+        this.ffname = sffn;
+        this.flname = sffn;
+    }
+    findmutualfriend = (...allfriends)=> {
+        let count:number=0;
+        let len:number = (<string[]>this.ffdlist).length;
+        let len2:number = (<string[]>allfriends).length; 
+        for(let i:number=0;i<len;i++)
+        {
+            for(let i2:number=0;i2<len2;i2++)
+            {
+                if(this.ffdlist[i]==allfriends[i2])
+                {
+                    console.log(`${this.ffdlist[i]} is mutual friend with ${this.ffname}`);
+                    count++;
+                }
+            }
+        }
+        console.log(`\nYou have ${count} mutual friends with ${this.ffname}`);
+    }
+    
+}
+
+let allUsers:string[] = ["Shashank Kumar","Akshay Jala","Vinay Kumar","Chandu Reddy","Ganesh Yadav","Harish Goud"];
+let frnd = new friend("Meh Lee","Kavya",["Shashank Kumar","Akshay Jala","Praveen Kumar"],"mehlee@gmail.com");
+let mfrnds = new mutualfriends("Ashok Kumar","Rahul",allUsers,"ashok@gmail.com");
+
+mfrnds.findmutualfriend("Shashank Kumar","Akshay Jala","Rakesh Goud","Ganesh Yadav","Sri Hari");
